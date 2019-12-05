@@ -2,7 +2,7 @@ import pygame
 
 #초기화
 pygame.init()
-width, height = 1400, 1030
+width, height = 1280, 960
 screen = pygame.display.set_mode((width, height))
 
 #이미지를 가져온다
@@ -48,14 +48,14 @@ while True:
             pygame.quit()
             exit(0)
         if event.type == pygame.KEYDOWN:
-            if event.key == (pygame.K_w or pygame.K_UP):
+            if event.key == pygame.K_w or  event.key == pygame.K_UP:
                 keys[0] = True
-            elif event.key == (pygame.K_s or pygame.K_DOWN):
+            elif event.key == pygame.K_s or  event.key == pygame.K_DOWN:
                 keys[1] = True
         if event.type == pygame.KEYUP:
-            if event.key == (pygame.K_w or pygame.K_UP):
+            if event.key == pygame.K_w or  event.key == pygame.K_UP:
                 keys[0] = False
-            elif event.key == (pygame.K_s or pygame.K_DOWN):
+            elif event.key == pygame.K_s or  event.key == pygame.K_DOWN:
                 keys[1] = False
     #플레이어 이동
     if keys[0] and playpos[1]>30:
