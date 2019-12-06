@@ -26,7 +26,6 @@ while True:
             screen.blit(images.tent_road,(0,(x+1)*140-110))
             screen.blit(images.tent,(0,(x+1)*140-110))
             screen.blit(images.pave_road,(300,(x+1)*140-110))
-            screen.blit(images.ground,(300,(x+1)*140+20))
     screen.blit(images.castle, (200,30))
     screen.blit(images.ball_room, (0,730))
     screen.blit(images.card_room, (300,730))
@@ -40,9 +39,8 @@ while True:
     screen.blit(images.cannon,(900,30))
     screen.blit(images.ball,(900,40))
     screen.blit(images.black,(500,310))
-    screen.blit(images.grey,(800,310))
     screen.blit(images.seer,(1200,30))
-    screen.blit(images.final,(600,30))
+    #screen.blit(images.final,(600,30))
     screen.blit(images.card_Red, (400,745))
    
 
