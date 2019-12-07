@@ -9,8 +9,9 @@ screen = pygame.display.set_mode((width, height))
 #플레이어 이동 리스트
 keys = [False, False]
 playpos = [220, 310]
-#플레이어 색깔 리스트
-color = [True, False, False, False, False, False]
+#플레이어 버튼 리스트
+button = [images.Red_button, images.Green_button,images.Blue_button,images.Yellow_button,images.Purple_button,images.Jade_button]
+active_button = images.Red_button
 #
 acc = [0,0]
 #화살
@@ -28,7 +29,7 @@ while True:
             screen.blit(images.pave_road,(300,(x+1)*140-110))
     screen.blit(images.castle, (200,30))
     screen.blit(images.ball_room, (0,730))
-    screen.blit(images.card_room, (300,730))
+    screen.blit(images.card_room, (230,730))
     screen.blit(images.player, playpos)
     screen.blit(images.zombie,(400,30))
     screen.blit(images.zombie_barrier,(300,30))
@@ -41,7 +42,8 @@ while True:
     screen.blit(images.black,(500,310))
     screen.blit(images.seer,(1200,30))
     #screen.blit(images.final,(600,30))
-    screen.blit(images.card_Red, (400,745))
+    screen.blit(images.card_Red, (400,735))
+    screen.blit(active_button,(15,750))
    
 
     #화면을 다시 그린다.
@@ -64,6 +66,19 @@ while True:
                 keys[0] = False
             elif event.key == pygame.K_s or  event.key == pygame.K_DOWN:
                 keys[1] = False
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_1:
+                active_button = button[0]
+            elif event.key == pygame.K_2:
+                active_button = button[1]
+            elif event.key == pygame.K_3:
+                active_button = button[2]
+            elif event.key == pygame.K_4:
+                active_button = button[3]
+            elif event.key == pygame.K_5:
+                active_button = button[4]
+            elif event.key == pygame.K_6:
+                active_button = button[5]
         # if event.type == pygame.MOUSEBUTTONDOWN:
         #     position = pygame.mouse.get_pos()
         #     acc[1] = acc[1] + 1
