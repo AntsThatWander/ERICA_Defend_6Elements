@@ -11,7 +11,10 @@ keys = [False, False]
 playpos = [220, 310]
 #플레이어 버튼 리스트
 button = [images.Red_button, images.Green_button,images.Blue_button,images.Yellow_button,images.Purple_button,images.Jade_button]
-active_button = images.Red_button
+active_button = button[0]
+#플레이어 이미지 리스트
+player = [images.red, images.green, images.blue, images.yellow, images.purple, images.jade]
+active_player = player[0]
 #
 acc = [0,0]
 #화살
@@ -30,7 +33,7 @@ while True:
     screen.blit(images.castle, (200,30))
     screen.blit(images.ball_room, (0,730))
     screen.blit(images.card_room, (230,730))
-    screen.blit(images.player, playpos)
+    screen.blit(active_player, playpos)
     screen.blit(images.zombie,(400,30))
     screen.blit(images.zombie_barrier,(300,30))
     screen.blit(images.nighthorror,(500,30))
@@ -69,16 +72,22 @@ while True:
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_1:
                 active_button = button[0]
+                active_player = player[0]
             elif event.key == pygame.K_2:
                 active_button = button[1]
+                active_player = player[1]
             elif event.key == pygame.K_3:
                 active_button = button[2]
+                active_player = player[2]
             elif event.key == pygame.K_4:
                 active_button = button[3]
+                active_player = player[3]
             elif event.key == pygame.K_5:
                 active_button = button[4]
+                active_player = player[4]
             elif event.key == pygame.K_6:
                 active_button = button[5]
+                active_player = player[5]
         # if event.type == pygame.MOUSEBUTTONDOWN:
         #     position = pygame.mouse.get_pos()
         #     acc[1] = acc[1] + 1

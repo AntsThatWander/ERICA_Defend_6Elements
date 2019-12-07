@@ -1,6 +1,12 @@
 import pygame
 #이미지를 가져온다
-player = pygame.image.load("resources/my_resources/player_ready_Red.png")
+red = pygame.image.load("resources/my_resources/player_ready_Red.png")
+green = pygame.image.load("resources/my_resources/player_ready_Green.png")
+blue = pygame.image.load("resources/my_resources/player_ready_Blue.png")
+yellow = pygame.image.load("resources/my_resources/player_ready_Yellow.png")
+purple = pygame.image.load("resources/my_resources/player_ready_Purple.png")
+jade = pygame.image.load("resources/my_resources/player_ready_Jade.png")
+fin = pygame.image.load("resources/my_resources/player_shoot.png")
 ball_room = pygame.image.load("resources/my_resources/ball_room.png")
 card_room = pygame.image.load("resources/my_resources/card_room.png")
 pave_road = pygame.image.load("resources/my_resources/pave_road.png")
