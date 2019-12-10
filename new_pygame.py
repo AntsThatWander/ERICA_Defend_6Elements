@@ -21,7 +21,8 @@ mshoot = player['shoot']
 arrow = images.arrow()
 #현재 이미지 값 current image color
 cur_color = 'red'
-
+#카드와 카드 이펙트 cards and cards' effects
+Rcard = images.red_card()
 #
 acc = [0,0]
 #화살
@@ -55,23 +56,16 @@ while True:
             screen.blit(images.tent_road,(0,(x+1)*140-110))
             screen.blit(images.tent,(0,(x+1)*140-110))
             screen.blit(images.pave_road,(300,(x+1)*140-110))
+            for y in range(10):
+                screen.blit(Rcard['dragon'][1], (300+y*98,(x+1)*140-110))
     screen.blit(images.castle, (200,30))
     screen.blit(images.ball_room, (0,730))
     screen.blit(images.card_room, (230,730))
+    screen.blit(images.score,(0,0))
+    screen.blit(images.Ehealth,(0,0))
     screen.blit(active_player, playpos)
     screen.blit(Lv1['zombie'],(400,30))
-    
-    # screen.blit(images.zombie_barrier,(300,30))
-    # screen.blit(images.nighthorror,(500,30))
-    # screen.blit(images.ling,(600,30))
-    # screen.blit(images.crawler,(700,30))
-    # screen.blit(images.sting,(800,80))
-    # screen.blit(images.cannon,(900,30))
-    # screen.blit(images.ball,(900,40))
-    # screen.blit(images.black,(500,310))
-    # screen.blit(images.seer,(1200,30))
-    # screen.blit(images.final,(600,30))
-    # screen.blit(images.card_Red, (400,735))
+    screen.blit(Rcard['burning'][0][0], (245,700))
     screen.blit(active_button,(15,750))
    
 
