@@ -39,10 +39,13 @@ Lv3 = images.Lv3_monster()
 Lv4 = images.Lv4_monster()
 #레벨 5 몬스터
 Lv5 = images.Lv5_monster()
+#FPS
+clock = pygame.time.Clock()
 
 
 #화면 띄우기
 while True:
+    clock.tick(60)
     #이미지 변경
     active_player = player[cur_color]
     active_mirror = mirror[cur_color]

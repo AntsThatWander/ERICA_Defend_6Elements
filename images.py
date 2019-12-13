@@ -114,38 +114,41 @@ def blue_card():
     world_3 = pygame.image.load("resources/my_resources/Blue_theworld_3.png")
     world_effect = pygame.image.load("resources/my_resources/theworld.png")
     again = [again_1, again_2, again_3]
-    world = [world_1, world_2, world_3]
+    world = [[world_1, world_2, world_3], world_effect]
     return {'again' : again, 'world' : world}
 def yellow_card():
-    burning_1 = pygame.image.load("resources/my_resources/Red_burning_1.png")
-    burning_2 = pygame.image.load("resources/my_resources/Red_burning_2.png")
-    burning_3 = pygame.image.load("resources/my_resources/Red_burning_3.png")
-    dragon_1 = pygame.image.load("resources/my_resources/Red_dragon_1.png")
-    dragon_2 = pygame.image.load("resources/my_resources/Red_dragon_2.png")
-    dragon_3 = pygame.image.load("resources/my_resources/Red_dragon_3.png")
-    burning = [burning_1, burning_2, burning_3]
-    dragon = [dragon_1, dragon_2, dragon_3]
-    return {'burning' : burning, 'dragon' : dragon}
+    wrath_1 = pygame.image.load("resources/my_resources/Yellow_protect_1.png")
+    wrath_2 = pygame.image.load("resources/my_resources/Yellow_protect_2.png")
+    wrath_3 = pygame.image.load("resources/my_resources/Yellow_protect_3.png")
+    wrath_effect = pygame.image.load("resources/my_resources/wrath.png")
+    protect_1 = pygame.image.load("resources/my_resources/Yellow_wrath_1.png")
+    protect_2 = pygame.image.load("resources/my_resources/Yellow_wrath_2.png")
+    protect_3 = pygame.image.load("resources/my_resources/Yellow_wrath_3.png")
+    protect_effect = pygame.image.load("resources/my_resources/protected.png")
+    wrath = [[wrath_1, wrath_2, wrath_3], wrath_effect]
+    protect = [[protect_1, protect_2, protect_3], protect_effect]
+    return {'wrath' : wrath, 'protect' : protect}
 def purple_card():
-    burning_1 = pygame.image.load("resources/my_resources/Red_burning_1.png")
-    burning_2 = pygame.image.load("resources/my_resources/Red_burning_2.png")
-    burning_3 = pygame.image.load("resources/my_resources/Red_burning_3.png")
-    dragon_1 = pygame.image.load("resources/my_resources/Red_dragon_1.png")
-    dragon_2 = pygame.image.load("resources/my_resources/Red_dragon_2.png")
-    dragon_3 = pygame.image.load("resources/my_resources/Red_dragon_3.png")
-    burning = [burning_1, burning_2, burning_3]
-    dragon = [dragon_1, dragon_2, dragon_3]
-    return {'burning' : burning, 'dragon' : dragon}
+    blood_1 = pygame.image.load("resources/my_resources/Purple_bloodfeast_1.png")
+    blood_2 = pygame.image.load("resources/my_resources/Purple_bloodfeast_2.png")
+    blood_3 = pygame.image.load("resources/my_resources/Purple_bloodfeast_3.png")
+    blood_effect = pygame.image.load("resources/my_resources/bloodfeast.png")
+    corplosion_1 = pygame.image.load("resources/my_resources/Purple_corplosion_1.png")
+    corplosion_2 = pygame.image.load("resources/my_resources/Purple_corplosion_2.png")
+    corplosion_3 = pygame.image.load("resources/my_resources/Purple_corplosion_3.png")
+    blood = [[blood_1, blood_2, blood_3], blood_effect]
+    corplosion = [corplosion_1, corplosion_2, corplosion_3]
+    return {'blood' : blood, 'corplosion' : corplosion}
 def jade_card():
-    burning_1 = pygame.image.load("resources/my_resources/Red_burning_1.png")
-    burning_2 = pygame.image.load("resources/my_resources/Red_burning_2.png")
-    burning_3 = pygame.image.load("resources/my_resources/Red_burning_3.png")
-    dragon_1 = pygame.image.load("resources/my_resources/Red_dragon_1.png")
-    dragon_2 = pygame.image.load("resources/my_resources/Red_dragon_2.png")
-    dragon_3 = pygame.image.load("resources/my_resources/Red_dragon_3.png")
-    burning = [burning_1, burning_2, burning_3]
-    dragon = [dragon_1, dragon_2, dragon_3]
-    return {'burning' : burning, 'dragon' : dragon}
+    cloudance_1 = pygame.image.load("resources/my_resources/Jade_clouddance_1.png")
+    cloudance_2 = pygame.image.load("resources/my_resources/Jade_clouddance_2.png")
+    cloudance_3 = pygame.image.load("resources/my_resources/Jade_clouddance_3.png")
+    mirror_1 = pygame.image.load("resources/my_resources/Jade_mirror_1.png")
+    mirror_2 = pygame.image.load("resources/my_resources/Jade_mirror_2.png")
+    mirror_3 = pygame.image.load("resources/my_resources/Jade_mirror_3.png")
+    cloudance = [cloudance_1, cloudance_2, cloudance_3]
+    mirror = [mirror_1, mirror_2, mirror_3]
+    return {'cloudance' : cloudance, 'mirror' : mirror}
 
 
 
