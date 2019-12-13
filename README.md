@@ -1,4 +1,6 @@
 # ERICA_Defend_6Elements
+### Before You Read
+
 This is my first university project.
 
 I don't want to make mistakes. Problems are already made, though...
@@ -10,4 +12,12 @@ I don't want to make mistakes. Problems are already made, though...
 원래 계획과 조금 틀어져서, 레포 이름이 바뀌게 되었으니 참고해주세요.
 
 (ERICA_RogueLike_DownToNode => ERICA_Defend_6Element)
+
+### How to Play
+
+
+### Monster Info
+
+
+### Card Info
 
