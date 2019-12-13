@@ -34,7 +34,8 @@ def player():
     purple = pygame.image.load("resources/my_resources/player_ready_Purple.png")
     jade = pygame.image.load("resources/my_resources/player_ready_Jade.png")
     fin = pygame.image.load("resources/my_resources/player_shoot.png")
-    return {'red' : red, 'green' : green, 'blue' : blue, 'yellow' : yellow, 'purple' : purple, 'jade' : jade, 'shoot' : fin} 
+    return {'red' : red, 'green' : green, 'blue' : blue, 'yellow' : yellow, \
+        'purple' : purple, 'jade' : jade, 'shoot' : fin} 
 def mirror():
     red = pygame.image.load("resources/my_resources/mirror_ready_Red.png")
     green = pygame.image.load("resources/my_resources/mirror_ready_Green.png")
@@ -43,7 +44,8 @@ def mirror():
     purple = pygame.image.load("resources/my_resources/mirror_ready_Purple.png")
     jade = pygame.image.load("resources/my_resources/mirror_ready_Jade.png")
     fin = pygame.image.load("resources/my_resources/mirror_shoot.png")
-    return {'red' : red, 'green' : green, 'blue' : blue, 'yellow' : yellow, 'purple' : purple, 'jade' : jade, 'shoot' : fin}
+    return {'red' : red, 'green' : green, 'blue' : blue, 'yellow' : yellow, \
+    'purple' : purple, 'jade' : jade, 'shoot' : fin}
 def arrow():
     red = pygame.image.load("resources/my_resources/arrow_Red.png")
     green = pygame.image.load("resources/my_resources/arrow_Green.png")
@@ -51,7 +53,8 @@ def arrow():
     yellow = pygame.image.load("resources/my_resources/arrow_Yellow.png")
     purple = pygame.image.load("resources/my_resources/arrow_Purple.png")
     jade = pygame.image.load("resources/my_resources/arrow_Jade.png")
-    return {'red' : red, 'green' : green, 'blue' : blue, 'yellow' : yellow, 'purple' : purple, 'jade' : jade}
+    return {'red' : red, 'green' : green, 'blue' : blue, 'yellow' : yellow, \
+        'purple' : purple, 'jade' : jade}
 
 #배경 backgrounds
 ball_room = pygame.image.load("resources/my_resources/ball_room.png")
@@ -79,7 +82,8 @@ def button():
     Yellow_button = pygame.image.load("resources/my_resources/Yellow_button.png")
     Purple_button = pygame.image.load("resources/my_resources/Purple_button.png")
     Jade_button = pygame.image.load("resources/my_resources/Jade_button.png")
-    return {'red' : Red_button, 'green' : Green_button, 'blue' : Blue_button, 'yellow' : Yellow_button, 'purple' : Purple_button, 'jade' : Jade_button}
+    return {'red' : Red_button, 'green' : Green_button, 'blue' : Blue_button, 'yellow' : Yellow_button, \
+        'purple' : Purple_button, 'jade' : Jade_button}
 
 #카드와 이펙트 cards and cards' effects
 def red_card():

@@ -18,13 +18,16 @@ pshoot = player['shoot']
 mirror = images.mirror()
 mshoot = player['shoot']
 #화살 이미지 사전 arrow images dictionary
-arrow = images.arrow()
+arrowco = images.arrow()
 #현재 이미지 값 current image color
 cur_color = 'red'
+#화살 생성 주기
+arrow_rate = 10
+arrow_count = arrow_rate - 1
 #카드와 카드 이펙트 cards and cards' effects
 Rcard = images.red_card()
-#
-acc = [0,0]
+#화살과 화살가 만난 적 수
+acc = [0,0] 
 #화살
 arrows = []
 #레벨 0 몬스터
@@ -46,11 +49,12 @@ clock = pygame.time.Clock()
 #화면 띄우기
 while True:
     clock.tick(60)
-    #이미지 변경
+    #색깔 관리
     active_player = player[cur_color]
     active_mirror = mirror[cur_color]
     active_button = button[cur_color]
-    active_arrow = arrow[cur_color]
+    active_arrow = arrowco[cur_color]
+
     #화면을 깨끗하게 한다.
     screen.fill((255,255,255)) #RGB
     
@@ -71,6 +75,19 @@ while True:
     screen.blit(Rcard['burning'][0][0], (245,700))
     screen.blit(active_button,(15,750))
    
+    #화살 관리
+    acc[1] = acc[1] + 1
+    arrow_count += 1
+    if(arrow_count==arrow_rate) :
+        arrows.append([playpos[0],playpos[1]])
+        arrow_count = 0
+    for bullet in arrows:
+        index = 0
+        bullet[0] += 20
+        if(bullet[0]>1280) :
+            arrows.pop(index)
+        index += 1
+        screen.blit(active_arrow, bullet)
 
     #화면을 다시 그린다.
     pygame.display.flip() 
@@ -81,18 +98,14 @@ while True:
         if event.type == pygame.QUIT:
             pygame.quit()
             exit(0)
-        #이동 관련 입력
+       
         if event.type == pygame.KEYDOWN:
+             #이동 moving
             if event.key == pygame.K_w or  event.key == pygame.K_UP:
                 keys[0] = True
             elif event.key == pygame.K_s or  event.key == pygame.K_DOWN:
                 keys[1] = True
-        if event.type == pygame.KEYUP:
-            if event.key == pygame.K_w or  event.key == pygame.K_UP:
-                keys[0] = False
-            elif event.key == pygame.K_s or  event.key == pygame.K_DOWN:
-                keys[1] = False
-        if event.type == pygame.KEYDOWN:
+            #색깔 바꾸기 changing color
             if event.key == pygame.K_1:
                 cur_color = 'red'
             elif event.key == pygame.K_2:
@@ -105,6 +118,13 @@ while True:
                 cur_color = 'purple'
             elif event.key == pygame.K_6:
                 cur_color = 'jade'
+        if event.type == pygame.KEYUP:
+            if event.key == pygame.K_w or  event.key == pygame.K_UP:
+                keys[0] = False
+            elif event.key == pygame.K_s or  event.key == pygame.K_DOWN:
+                keys[1] = False
+
+     
         # if event.type == pygame.MOUSEBUTTONDOWN:
         #     position = pygame.mouse.get_pos()
         #     acc[1] = acc[1] + 1
