@@ -70,7 +70,7 @@ while True:
     screen.blit(images.card_room, (230,730))
     screen.blit(images.score,(0,0))
     screen.blit(images.Ehealth,(0,0))
-    screen.blit(active_player, playpos)
+    
     screen.blit(Lv1['zombie'],(400,30))
     screen.blit(Rcard['burning'][0][0], (245,700))
     screen.blit(active_button,(15,750))
@@ -79,8 +79,11 @@ while True:
     acc[1] = acc[1] + 1
     arrow_count += 1
     if(arrow_count==arrow_rate) :
-        arrows.append([playpos[0],playpos[1]])
+        arrows.append([playpos[0],playpos[1]+32])
         arrow_count = 0
+        screen.blit(pshoot, playpos)
+    else :
+        screen.blit(active_player, playpos)
     for bullet in arrows:
         index = 0
         bullet[0] += 20
