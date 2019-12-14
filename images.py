@@ -161,7 +161,7 @@ def jade_card():
 def result():
     win = pygame.image.load("resources/my_resources/win.png")
     lose = pygame.image.load("resources/my_resources/lose.png")
-    return (win, lose)
+    return (lose, win)
     
 
 
