@@ -15,6 +15,8 @@ screen = pygame.display.set_mode((width, height))
 
 #폰트
 font = pygame.font.Font(None,30)
+#플레이 가능한 위치
+possibleposs = [[220, 30],[220,170],[220,310],[220,450],[220,590]]
 
 
 #플레이어 위치 player location
@@ -149,8 +151,16 @@ while running:
         arrows.append([[playpos[0], playpos[1]+32], images.arrow()[cur_color]])
         arrow_count = 0
         screen.blit(pshoot, playpos)
+        if(cur_color == 'jade') :
+            for x in possibleposs :
+                if x[1] != playpos[1]:
+                    screen.blit(mshoot, x)
     else :
         screen.blit(active_player, playpos)
+        if(cur_color == 'jade') :
+            for x in possibleposs :
+                if x[1] != playpos[1]:
+                    screen.blit(active_mirror, x)
     #화살 이미지 관리
     for bullet in arrows:
         bullet[0][0] += 30
