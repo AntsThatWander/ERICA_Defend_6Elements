@@ -38,12 +38,15 @@ effect = images.effect()
 #화살
 arrows = []
 #몬스터 등장 시간
-bad_rate = 40
+bad_rate = 10
 bad_count = 0
 #몬스터 리스트
 badguys = []
 #출력 몬스터 리스트
 seebadguys = []
+#몬스터 탄환
+monarrow = []
+
 #성 체력
 healthvalue = 200
 #wave
@@ -182,6 +185,9 @@ while running:
             seebadguys.pop(windex)
         else :
             badguy.move()
+            if(badguy.is_ranged()):
+                badguy.ranged(monarrow)
+                monarrow_count = 0
         #화살과의 충돌
         bindex = 0
         for bullet in arrows:
@@ -198,6 +204,19 @@ while running:
         windex += 1
     for badguy in seebadguys:
         screen.blit(badguy.image, badguy.getpos())
+    bindex = 0
+    #몬스터 탄환
+    for bullet in monarrow:
+        bullrect = pygame.Rect(bullet.image.get_rect())
+        bullrect.top = bullet.height
+        bullrect.left = bullet.weight
+        if bullrect.left < 300:
+            healthvalue -= bullet.getad()
+            monarrow.pop(bindex)
+        else :
+            bullet.move()
+    for bullet in monarrow:
+        screen.blit(bullet.image, bullet.getpos())
 
     #체력 감소
     for health in range((200-healthvalue)//2):

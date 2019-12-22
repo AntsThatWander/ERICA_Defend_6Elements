@@ -48,7 +48,7 @@ class ling(monster):
 
 class sting(monster):
     def __init__(self, hp, weight, height):
-        super().__init__(images.Lv0_monster()['sting'], 0, 3, 0)
+        super().__init__(images.Lv0_monster()['sting'], 1, 7, 0)
         self.hp = hp
         self.weight = weight
         self.height = height
@@ -56,7 +56,7 @@ class sting(monster):
 
 class ball(monster):
     def __init__(self, hp, weight, height):
-        super().__init__(images.Lv0_monster()['ball'], 0, 3, 0)
+        super().__init__(images.Lv0_monster()['ball'], 3, 10, 0)
         self.hp = hp
         self.weight = weight
         self.height = height
@@ -85,32 +85,46 @@ class horror(monster):
         return True
 
 class crawler(monster):
+    rate = 50
     def __init__(self, hp):
         super().__init__(images.Lv2_monster()['crawler'], 2, 3, 0)
         self.hp = hp
+        self.count = 0
     def move(self):
-        if self.weight>580:
+        if self.weight>780:
             self.weight = self.weight - self.mv
+        else:
+            self.count += 1
     def is_ranged(self):
         return True
+    def is_ready(self):
+        return True if self.count == self.rate else False
     def ranged(self,ls):
-        if self.weight<=780:
-            st = sting(1)
+        if self.weight<=780 and self.is_ready():
+            st = sting(1, self.weight, self.height)
             ls.append(st)
+            self.count = 0
 
 class cannon(monster):
+    rate = 80
     def __init__(self, hp):
         super().__init__(images.Lv3_monster()['cannon'], 3, 1, 5)
         self.hp = hp
+        self.count = 0
     def move(self):
         if self.weight>1080:
             self.weight = self.weight - self.mv
+        else:
+            self.count += 1
     def is_ranged(self):
         return True
+    def is_ready(self):
+        return True if self.count == self.rate else False
     def ranged(self,ls):
-        if self.weight<=580:
-            st = sting(1)
+        if self.weight<=1080 and self.is_ready():
+            st = ball(1, self.weight, self.height)
             ls.append(st)
+            self.count = 0
 
 class seer(monster):
     def __init__(self, hp):
