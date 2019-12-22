@@ -16,13 +16,12 @@ I don't want to make mistakes. Problems are already made, though...
 ### How to Play
 
 W/S 키나 화살표 위키/아래키를 눌러 위아래로 움직이세요.
-1번 키부터 6번 키까지 눌러서 당신의 색깔 능력을 바꿀 수 있습니다.
+1번 키부터 6번 키까지 눌러서 당신의 색을 바꿀 수 있습니다.
 
 press W/S or UP/DOWN to move up and down
-press 1 to 6 to change your color, your ability 
-
-### Monster Info
+press 1 to 6 to change your color 
 
 
-### Card Info
+### Source
+https://github.com/eventia/rabbitone 
 

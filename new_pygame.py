@@ -122,12 +122,11 @@ while running:
     for x in range(5):
             screen.blit(images.tent_road,(0,(x+1)*140-110))
             screen.blit(images.tent,(0,(x+1)*140-110))
-            if(cur_color == 'red' or cur_color == 'blue') :
+            if(cur_color == 'red' or cur_color == 'blue' or cur_color == 'purple') :
                 screen.blit(effect[cur_color],(300,(x+1)*140-110))
             else:
                 screen.blit(images.pave_road,(300,(x+1)*140-110))
-            if(cur_color == 'purple') :
-                screen.blit(effect[cur_color],(300,(x+1)*140-110))
+
     if(cur_color == 'yellow') :
         screen.blit(effect['yellow'], (200,30))
     else:
@@ -158,12 +157,13 @@ while running:
             screen.blit(bullet[1], bullet[0])
 
     #나쁜 놈들 그리기
-    # if badtimer == 0:
-    #     badtimer = 100 - (badtimer1*2)
-    #     if badtimer1>=35:
-    #         badtimer1 = 35
-    #     else:
-    #         badtimer1 += 5
+    if badtimer == 0:
+        badguys.append([1280, random.choice(height)])
+        badtimer = 100 - (badtimer1*2)
+        if badtimer1>=35:
+            badtimer1 = 35
+        else:
+            badtimer1 += 5
     index = 0
     for badguy in badguys:
         if badguy[0]<-64:
