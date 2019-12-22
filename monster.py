@@ -131,7 +131,7 @@ class cannon(monster):
             self.count = 0
 
 class seer(monster):
-    rate = 50
+    rate = 20
     def __init__(self, hp):
         super().__init__(images.Lv3_monster()['seer'], 3, 3, 0)
         self.hp = hp
