@@ -13,8 +13,6 @@ pygame.init()
 width, height = 1280, 960
 screen = pygame.display.set_mode((width, height))
 
-#random list
-dice = [1,2,3,4,5]
 #플레이어 위치 player location
 keys = [False, False]
 playpos = [220, 310]
@@ -33,70 +31,68 @@ arrow_rate = 10
 arrow_count = arrow_rate - 1
 #이펙트 effects
 effect = images.effect()
-#화살과 화살가 만난 적 수
-acc = [0,0] 
 #화살
 arrows = []
 #몬스터 등장 시간
-badtimer = 100
-badtimer1 = 0
+bad_rate = 40
+bad_count = 0
 #몬스터 리스트
-badguys = [[1280, 30]]
+badguys = []
+#출력 몬스터 리스트
+seebadguys = []
 #성 체력
 healthvalue = 200
 #wave
-wave = [[],[],[],[],[]]
-zombie = [40,0]
-zombie_b = [40,0]
-horror = [30,1]
-crawler = [20,1]
-seer = [20,2]
-cannon = [10,2]
-lord = [5,4]
+wave = [[],[],[],[]]
+zombie = [20,0]
+zombie_b = [20,0]
+horror = [10,1]
+crawler = [10,1]
+seer = [10,2]
+cannon = [5,2]
 final = [1,3]
 height = [30, 170, 310, 450, 590]
 for x in range(0,4):
     if x == zombie[1] :
         zombie[1] += 1
-        for y in range(0,zombie[0]-1):
+        for y in range(0,zombie[0]):
             m = monster.zombie(20)
             wave[x].append(m)
     if x == zombie_b[1] :
-        zombie[1] += 1
-        for y in range(0,zombie_b[0]-1):
+        zombie_b[1] += 1
+        for y in range(0,zombie_b[0]):
             m = monster.zombie_b(20)
             wave[x].append(m)
     if x == horror[1] :
         horror[1] += 1
-        for y in range(0,horror[0]-1):
-            m = monster.horror(10)
+        for y in range(0,horror[0]):
+            m = monster.horror(20)
             wave[x].append(m)
     if x == crawler[1] :
         crawler[1] += 1
-        for y in range(0,crawler[0]-1):
-            m = monster.crawler(20)
+        for y in range(0,crawler[0]):
+            m = monster.crawler(40)
             wave[x].append(m)
     if x == seer[1] :
         seer[1] += 1
-        for y in range(0,seer[0]-1):
-            m = monster.seer(20)
+        for y in range(0,seer[0]):
+            m = monster.seer(40)
             wave[x].append(m)
     if x == cannon[1] :
         cannon[1] += 1
-        for y in range(0,cannon[0]-1):
-            m = monster.cannon(20)
+        for y in range(0,cannon[0]):
+            m = monster.cannon(50)
             wave[x].append(m)
-    if x == final[1] :
-        for y in range(0):
+    if x == 3 :
             m = monster.final(100)
-            wave[x].append(m)
-    if x == lord[1] :
-        for y in range(0,4):
-            m = monster.black(50,height[y])
             wave[x].append(m)
 for x in range(0,4):
     random.shuffle(wave[x])
-            
+    for y in range(0,5):
+        if y != 0 and y != 4:
+            lord = monster.black(50,30+140*y)
+            wave[x].append(lord)
+badguys = wave[0]
 
 
 #FPS
@@ -109,7 +105,7 @@ excitcode = 0
 #화면 띄우기
 while running:
     clock.tick(60)
-    badtimer -= 1
+    bad_count += 1
     #색깔 관리
     active_player = player[cur_color]
     active_mirror = mirror[cur_color]
@@ -140,9 +136,8 @@ while running:
     screen.blit(active_button,(15,750))
    
     #화살 리스트와 플레이어 이미지 관리
-    acc[1] = acc[1] + 1
     arrow_count += 1
-    if(arrow_count==arrow_rate) :
+    if arrow_count==arrow_rate :
         arrows.append([[playpos[0], playpos[1]+32], images.arrow()[cur_color]])
         arrow_count = 0
         screen.blit(pshoot, playpos)
@@ -156,50 +151,48 @@ while running:
         else:
             screen.blit(bullet[1], bullet[0])
 
-    #나쁜 놈들 그리기
-    if badtimer == 0:
-        badguys.append([1280, random.choice(height)])
-        badtimer = 100 - (badtimer1*2)
-        if badtimer1>=35:
-            badtimer1 = 35
-        else:
-            badtimer1 += 5
-    index = 0
-    for badguy in badguys:
-        if badguy[0]<-64:
-            badguys.pop(index)
-        else:
-            badguy[0]-=7
-        #나쁜 놈들의 공격
-        badrect = pygame.Rect(images.Lv1_monster()['zombie'].get_rect())
-        badrect.top = badguy[1]
-        badrect.left = badguy[0]
+    #나쁜 놈들 리스트 정렬
+    if(not wave[0]):
+        badguys = wave[1]
+ 
+    if(not wave[1]):
+        badguys = wave[2]
+ 
+    if(not wave[2]):
+        badguys = wave[3]
+
+    #나쁜 놈들 소환
+    if(bad_count == bad_rate and badguys):
+        bad_count = 0
+        seebadguys.append(badguys[0])
+        badguys.pop(0)
+    #나쁜 놈들 충돌 크기 조정
+    windex = 0
+    for badguy in seebadguys:
+        badrect = pygame.Rect(badguy.image.get_rect())
+        badrect.top = badguy.height
+        badrect.left = badguy.weight
+        #성 공격
         if badrect.left < 300:
-            healthvalue -= 50
-            badguys.pop(index)
-        #화살 충돌
-        index1 = 0
+            healthvalue -= badguy.getad()
+            seebadguys.pop(windex)
+        else :
+            badguy.move()
+        #화살과의 충돌
+        bindex = 0
         for bullet in arrows:
             bullrect = pygame.Rect(bullet[1].get_rect())
             bullrect.left = bullet[0][0]
             bullrect.top = bullet[0][1]
-            if badrect.colliderect(bullrect) :
-                acc[0]+=1
-                badguys.pop(index)
-                arrows.pop(index1)
-            index1 += 1
-        #다음 웨이브
-        index+=1
-    for badguy in badguys:
-        screen.blit(images.Lv1_monster()['zombie'], badguy)
-
-    #시간
-    font = pygame.font.Font(None,24)
-    survivedtext = font.render(str(int(90000-pygame.time.get_ticks()))+":"\
-        +str(int((90000-pygame.time.get_ticks())/1000%60)).zfill(2),True, (0,0,0))
-    textRect = survivedtext.get_rect()
-    textRect.topright=[1000,0]
-    screen.blit(survivedtext, textRect)
+            if badrect.colliderect(bullrect):
+                badguy.sethp(20)
+                if(badguy.gethp()<=0):
+                    seebadguys.pop(windex)
+                arrows.pop(bindex)
+            bindex += 1
+        windex += 1
+    for badguy in seebadguys:
+        screen.blit(badguy.image, badguy.getpos())
 
     #체력 감소
     for health in range((200-healthvalue)//2):
@@ -248,7 +241,7 @@ while running:
         playpos[1] = playpos[1] + 140
     
     #이겼는가?
-    if pygame.time.get_ticks()>= 90000:
+    if not wave[0] and not wave[1] and not wave[2] and not wave[3] and not seebadguys:
         running = 0
         exitcode = 1
     if healthvalue <= 0:
