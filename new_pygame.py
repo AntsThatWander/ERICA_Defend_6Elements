@@ -184,7 +184,6 @@ while running:
         if burf > 0 :
             badguy.setshield(1)
             burf -= 1
-            print("burf!")
         #성 공격
         if badrect.left < 300:
             healthvalue -= badguy.getad()
