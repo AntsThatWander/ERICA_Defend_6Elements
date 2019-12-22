@@ -85,75 +85,26 @@ def button():
     return {'red' : Red_button, 'green' : Green_button, 'blue' : Blue_button, 'yellow' : Yellow_button, \
         'purple' : Purple_button, 'jade' : Jade_button}
 
-#카드와 이펙트 cards and cards' effects
-def red_card():
-    burning_1 = pygame.image.load("resources/my_resources/Red_burning_1.png")
-    burning_2 = pygame.image.load("resources/my_resources/Red_burning_2.png")
-    burning_3 = pygame.image.load("resources/my_resources/Red_burning_3.png")
-    burning_effect = pygame.image.load("resources/my_resources/larva_road.png")
-    dragon_1 = pygame.image.load("resources/my_resources/Red_dragon_1.png")
-    dragon_2 = pygame.image.load("resources/my_resources/Red_dragon_2.png")
-    dragon_3 = pygame.image.load("resources/my_resources/Red_dragon_3.png")
-    dragon_effect = pygame.image.load("resources/my_resources/fire.png")
-    burning = [[burning_1, burning_2, burning_3], burning_effect]
-    dragon = [[dragon_1, dragon_2, dragon_3], dragon_effect]
-    return {'burning' : burning, 'dragon' : dragon}
-def green_card():
-    lifec_1 = pygame.image.load("resources/my_resources/Green_lifeconsume_1.png")
-    lifec_2 = pygame.image.load("resources/my_resources/Green_lifeconsume_2.png")
-    lifec_3 = pygame.image.load("resources/my_resources/Green_lifeconsume_3.png")
-    revng_1 = pygame.image.load("resources/my_resources/Green_revenge_1.png")
-    revng_2 = pygame.image.load("resources/my_resources/Green_revenge_2.png")
-    revng_3 = pygame.image.load("resources/my_resources/Green_revenge_3.png")
-    revng_effect = pygame.image.load("resources/my_resources/revenge.png")
-    lifec = [lifec_1, lifec_2, lifec_3]
-    revng = [[revng_1, revng_2, revng_3], revng_effect]
-    return {'lifec' : lifec, 'revng' : revng}
-def blue_card():
-    again_1 = pygame.image.load("resources/my_resources/Blue_firstagain_1.png")
-    again_2 = pygame.image.load("resources/my_resources/Blue_firstagain_2.png")
-    again_3 = pygame.image.load("resources/my_resources/Blue_firstagain_3.png")
-    world_1 = pygame.image.load("resources/my_resources/Blue_theworld_1.png")
-    world_2 = pygame.image.load("resources/my_resources/Blue_theworld_2.png")
-    world_3 = pygame.image.load("resources/my_resources/Blue_theworld_3.png")
-    world_effect = pygame.image.load("resources/my_resources/theworld.png")
-    again = [again_1, again_2, again_3]
-    world = [[world_1, world_2, world_3], world_effect]
-    return {'again' : again, 'world' : world}
-def yellow_card():
-    wrath_1 = pygame.image.load("resources/my_resources/Yellow_protect_1.png")
-    wrath_2 = pygame.image.load("resources/my_resources/Yellow_protect_2.png")
-    wrath_3 = pygame.image.load("resources/my_resources/Yellow_protect_3.png")
-    wrath_effect = pygame.image.load("resources/my_resources/wrath.png")
-    protect_1 = pygame.image.load("resources/my_resources/Yellow_wrath_1.png")
-    protect_2 = pygame.image.load("resources/my_resources/Yellow_wrath_2.png")
-    protect_3 = pygame.image.load("resources/my_resources/Yellow_wrath_3.png")
-    protect_effect = pygame.image.load("resources/my_resources/protected.png")
-    wrath = [[wrath_1, wrath_2, wrath_3], wrath_effect]
-    protect = [[protect_1, protect_2, protect_3], protect_effect]
-    return {'wrath' : wrath, 'protect' : protect}
-def purple_card():
-    blood_1 = pygame.image.load("resources/my_resources/Purple_bloodfeast_1.png")
-    blood_2 = pygame.image.load("resources/my_resources/Purple_bloodfeast_2.png")
-    blood_3 = pygame.image.load("resources/my_resources/Purple_bloodfeast_3.png")
-    blood_effect = pygame.image.load("resources/my_resources/bloodfeast.png")
-    corplosion_1 = pygame.image.load("resources/my_resources/Purple_corplosion_1.png")
-    corplosion_2 = pygame.image.load("resources/my_resources/Purple_corplosion_2.png")
-    corplosion_3 = pygame.image.load("resources/my_resources/Purple_corplosion_3.png")
-    blood = [[blood_1, blood_2, blood_3], blood_effect]
-    corplosion = [corplosion_1, corplosion_2, corplosion_3]
-    return {'blood' : blood, 'corplosion' : corplosion}
-def jade_card():
-    cloudance_1 = pygame.image.load("resources/my_resources/Jade_clouddance_1.png")
-    cloudance_2 = pygame.image.load("resources/my_resources/Jade_clouddance_2.png")
-    cloudance_3 = pygame.image.load("resources/my_resources/Jade_clouddance_3.png")
-    mirror_1 = pygame.image.load("resources/my_resources/Jade_mirror_1.png")
-    mirror_2 = pygame.image.load("resources/my_resources/Jade_mirror_2.png")
-    mirror_3 = pygame.image.load("resources/my_resources/Jade_mirror_3.png")
-    cloudance = [cloudance_1, cloudance_2, cloudance_3]
-    mirror = [mirror_1, mirror_2, mirror_3]
-    return {'cloudance' : cloudance, 'mirror' : mirror}
+#이펙트 effects
 
+def red_effect():
+    return pygame.image.load("resources/my_resources/larva_road.png")
+def green_effect():
+    return pygame.image.load("resources/my_resources/revenge.png")
+def blue_effect():
+    return pygame.image.load("resources/my_resources/theworld.png")
+def yellow_effect():
+    return pygame.image.load("resources/my_resources/protected.png")
+def purple_effect():
+    return pygame.image.load("resources/my_resources/bloodfeast.png")
+def effect():
+    red = red_effect()
+    green = green_effect()
+    blue = blue_effect()
+    yellow = yellow_effect()
+    purple = purple_effect()
+    return {'red' : red, 'green' : green, 'blue' : blue, 'yellow' : yellow, \
+        'purple' : purple}
 
 
 

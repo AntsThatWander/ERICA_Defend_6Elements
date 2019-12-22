@@ -1,12 +1,20 @@
 import pygame
 import images
 import random
+import monster
+
+
+
+
+#몬스터 정보
 
 #초기화
 pygame.init()
 width, height = 1280, 960
 screen = pygame.display.set_mode((width, height))
 
+#random list
+dice = [1,2,3,4,5]
 #플레이어 위치 player location
 keys = [False, False]
 playpos = [220, 310]
@@ -23,8 +31,8 @@ cur_color = 'red'
 #화살 생성 주기
 arrow_rate = 10
 arrow_count = arrow_rate - 1
-#카드와 카드 이펙트 cards and cards' effects
-Rcard = images.red_card()
+#이펙트 effects
+effect = images.effect()
 #화살과 화살가 만난 적 수
 acc = [0,0] 
 #화살
@@ -34,20 +42,63 @@ badtimer = 100
 badtimer1 = 0
 #몬스터 리스트
 badguys = [[1280, 30]]
-#체력
+#성 체력
 healthvalue = 200
-#레벨 0 몬스터
-Lv0 = images.Lv0_monster()
-#레벨 1 몬스터
-Lv1 = images.Lv1_monster()
-#레벨 2 몬스터
-Lv2 = images.Lv2_monster()
-#레벨 3 몬스터
-Lv3 = images.Lv3_monster()
-#레벨 4 몬스터
-Lv4 = images.Lv4_monster()
-#레벨 5 몬스터
-Lv5 = images.Lv5_monster()
+#wave
+wave = [[],[],[],[],[]]
+zombie = [40,0]
+zombie_b = [40,0]
+horror = [30,1]
+crawler = [20,1]
+seer = [20,2]
+cannon = [10,2]
+lord = [5,4]
+final = [1,3]
+height = [30, 170, 310, 450, 590]
+for x in range(0,4):
+    if x == zombie[1] :
+        zombie[1] += 1
+        for y in range(0,zombie[0]-1):
+            m = monster.zombie(20)
+            wave[x].append(m)
+    if x == zombie_b[1] :
+        zombie[1] += 1
+        for y in range(0,zombie_b[0]-1):
+            m = monster.zombie_b(20)
+            wave[x].append(m)
+    if x == horror[1] :
+        horror[1] += 1
+        for y in range(0,horror[0]-1):
+            m = monster.horror(10)
+            wave[x].append(m)
+    if x == crawler[1] :
+        crawler[1] += 1
+        for y in range(0,crawler[0]-1):
+            m = monster.crawler(20)
+            wave[x].append(m)
+    if x == seer[1] :
+        seer[1] += 1
+        for y in range(0,seer[0]-1):
+            m = monster.seer(20)
+            wave[x].append(m)
+    if x == cannon[1] :
+        cannon[1] += 1
+        for y in range(0,cannon[0]-1):
+            m = monster.cannon(20)
+            wave[x].append(m)
+    if x == final[1] :
+        for y in range(0):
+            m = monster.final(100)
+            wave[x].append(m)
+    if x == lord[1] :
+        for y in range(0,4):
+            m = monster.black(50,height[y])
+            wave[x].append(m)
+for x in range(0,4):
+    random.shuffle(wave[x])
+            
+
+
 #FPS
 clock = pygame.time.Clock()
 
@@ -71,13 +122,22 @@ while running:
     for x in range(5):
             screen.blit(images.tent_road,(0,(x+1)*140-110))
             screen.blit(images.tent,(0,(x+1)*140-110))
-            screen.blit(images.pave_road,(300,(x+1)*140-110))
-    screen.blit(images.castle, (200,30))
+            if(cur_color == 'red' or cur_color == 'blue') :
+                screen.blit(effect[cur_color],(300,(x+1)*140-110))
+            else:
+                screen.blit(images.pave_road,(300,(x+1)*140-110))
+            if(cur_color == 'purple') :
+                screen.blit(effect[cur_color],(300,(x+1)*140-110))
+    if(cur_color == 'yellow') :
+        screen.blit(effect['yellow'], (200,30))
+    else:
+        screen.blit(images.castle, (200,30))
+    if(cur_color == 'green'):
+        screen.blit(effect['green'], (200,30))
     screen.blit(images.ball_room, (0,730))
     screen.blit(images.card_room, (230,730))
     screen.blit(images.score,(0,0))
     screen.blit(images.Ehealth,(0,0))
-    screen.blit(Rcard['burning'][0][0], (245,700))
     screen.blit(active_button,(15,750))
    
     #화살 리스트와 플레이어 이미지 관리
@@ -98,13 +158,12 @@ while running:
             screen.blit(bullet[1], bullet[0])
 
     #나쁜 놈들 그리기
-    if badtimer == 0:
-        badguys.append([1280, 30 + random.randint(0,4)*140])
-        badtimer = 100 - (badtimer1*2)
-        if badtimer1>=35:
-            badtimer1 = 35
-        else:
-            badtimer1 += 5
+    # if badtimer == 0:
+    #     badtimer = 100 - (badtimer1*2)
+    #     if badtimer1>=35:
+    #         badtimer1 = 35
+    #     else:
+    #         badtimer1 += 5
     index = 0
     for badguy in badguys:
         if badguy[0]<-64:
@@ -112,7 +171,7 @@ while running:
         else:
             badguy[0]-=7
         #나쁜 놈들의 공격
-        badrect = pygame.Rect(Lv1['zombie'].get_rect())
+        badrect = pygame.Rect(images.Lv1_monster()['zombie'].get_rect())
         badrect.top = badguy[1]
         badrect.left = badguy[0]
         if badrect.left < 300:
@@ -129,11 +188,10 @@ while running:
                 badguys.pop(index)
                 arrows.pop(index1)
             index1 += 1
-
         #다음 웨이브
         index+=1
     for badguy in badguys:
-        screen.blit(Lv1['zombie'], badguy)
+        screen.blit(images.Lv1_monster()['zombie'], badguy)
 
     #시간
     font = pygame.font.Font(None,24)
@@ -156,14 +214,14 @@ while running:
         if event.type == pygame.QUIT:
             pygame.quit()
             exit(0)
-       
+        #이동 moving
         if event.type == pygame.KEYDOWN:
-             #이동 moving
             if event.key == pygame.K_w or  event.key == pygame.K_UP:
                 keys[0] = True
             elif event.key == pygame.K_s or  event.key == pygame.K_DOWN:
                 keys[1] = True
-            #색깔 바꾸기 changing color
+        #색깔 바꾸기 changing color
+        if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_1:
                 cur_color = 'red'
             elif event.key == pygame.K_2:
@@ -182,11 +240,7 @@ while running:
             elif event.key == pygame.K_s or  event.key == pygame.K_DOWN:
                 keys[1] = False
 
-     
-        # if event.type == pygame.MOUSEBUTTONDOWN:
-        #     position = pygame.mouse.get_pos()
-        #     acc[1] = acc[1] + 1
-        #     arrows.append()
+
     #플레이어 이동 범위 제한 player movement range limits
     if keys[0] and playpos[1]>30:
         playpos[1] = playpos[1] - 140
