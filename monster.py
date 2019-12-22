@@ -40,6 +40,10 @@ class monster:
         return False
     def is_ranged(self):
         return False
+    def is_buffer(self):
+        return False
+    def setshield(self, shield):
+        self.shield += shield
 
 class ling(monster):
     def __init__(self, hp):
@@ -48,7 +52,7 @@ class ling(monster):
 
 class sting(monster):
     def __init__(self, hp, weight, height):
-        super().__init__(images.Lv0_monster()['sting'], 1, 7, 0)
+        super().__init__(images.Lv0_monster()['sting'], 1, 20, 0)
         self.hp = hp
         self.weight = weight
         self.height = height
@@ -56,7 +60,7 @@ class sting(monster):
 
 class ball(monster):
     def __init__(self, hp, weight, height):
-        super().__init__(images.Lv0_monster()['ball'], 3, 10, 0)
+        super().__init__(images.Lv0_monster()['ball'], 3, 30, 0)
         self.hp = hp
         self.weight = weight
         self.height = height
@@ -85,7 +89,7 @@ class horror(monster):
         return True
 
 class crawler(monster):
-    rate = 50
+    rate = 80
     def __init__(self, hp):
         super().__init__(images.Lv2_monster()['crawler'], 2, 3, 0)
         self.hp = hp
@@ -106,9 +110,9 @@ class crawler(monster):
             self.count = 0
 
 class cannon(monster):
-    rate = 80
+    rate = 300
     def __init__(self, hp):
-        super().__init__(images.Lv3_monster()['cannon'], 3, 1, 5)
+        super().__init__(images.Lv3_monster()['cannon'], 20, 1, 5)
         self.hp = hp
         self.count = 0
     def move(self):
@@ -127,9 +131,22 @@ class cannon(monster):
             self.count = 0
 
 class seer(monster):
+    rate = 50
     def __init__(self, hp):
-        super().__init__(images.Lv3_monster()['seer'], 3, 10, 0)
+        super().__init__(images.Lv3_monster()['seer'], 3, 3, 0)
         self.hp = hp
+        self.count = 0
+    def move(self):
+        self.weight = self.weight - self.mv
+        self.count += 1
+    def is_buffer(self):
+        return True
+    def burf(self):
+        if(self.count == self.rate):
+            count = 0
+            return 1
+        else :
+            return 0
 
 class black(monster):
     def __init__(self, hp, height):

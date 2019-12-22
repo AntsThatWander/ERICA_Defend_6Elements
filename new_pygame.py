@@ -38,7 +38,7 @@ effect = images.effect()
 #화살
 arrows = []
 #몬스터 등장 시간
-bad_rate = 10
+bad_rate = 40
 bad_count = 0
 #몬스터 리스트
 badguys = []
@@ -46,7 +46,8 @@ badguys = []
 seebadguys = []
 #몬스터 탄환
 monarrow = []
-
+#버프 횟수
+burf = 0
 #성 체력
 healthvalue = 200
 #wave
@@ -179,15 +180,23 @@ while running:
         badrect = pygame.Rect(badguy.image.get_rect())
         badrect.top = badguy.height
         badrect.left = badguy.weight
+        #버프 받음
+        if burf > 0 :
+            badguy.setshield(1)
+            burf -= 1
+            print("burf!")
         #성 공격
         if badrect.left < 300:
             healthvalue -= badguy.getad()
             seebadguys.pop(windex)
+            left -= 1
         else :
             badguy.move()
             if(badguy.is_ranged()):
                 badguy.ranged(monarrow)
                 monarrow_count = 0
+            if(badguy.is_buffer()):
+                burf += badguy.burf()
         #화살과의 충돌
         bindex = 0
         for bullet in arrows:
