@@ -6,12 +6,16 @@ import monster
 
 
 
-#몬스터 정보
+
 
 #초기화
 pygame.init()
 width, height = 1280, 960
 screen = pygame.display.set_mode((width, height))
+
+#폰트
+font = pygame.font.Font(None,30)
+
 
 #플레이어 위치 player location
 keys = [False, False]
@@ -93,7 +97,7 @@ for x in range(0,4):
             lord = monster.black(50,30+140*y)
             wave[x].append(lord)
 badguys = wave[0]
-
+left = len(wave[0]) + len(wave[1]) + len(wave[2]) + len(wave[3]) 
 
 #FPS
 clock = pygame.time.Clock()
@@ -188,6 +192,7 @@ while running:
                 badguy.sethp(20)
                 if(badguy.gethp()<=0):
                     seebadguys.pop(windex)
+                    left -= 1
                 arrows.pop(bindex)
             bindex += 1
         windex += 1
@@ -198,6 +203,10 @@ while running:
     for health in range((200-healthvalue)//2):
         screen.blit(images.health0, (200-(health+1)*2,0))
     
+    #남은 수
+    text = font.render("left : "+str(left), True, (255,255,255))
+    screen.blit(text, [1000,0])
+
     #화면을 다시 그린다.
     pygame.display.flip() 
 

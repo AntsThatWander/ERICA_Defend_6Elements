@@ -47,16 +47,19 @@ class ling(monster):
         self.hp = hp
 
 class sting(monster):
-    def __init__(self, hp):
+    def __init__(self, hp, weight, height):
         super().__init__(images.Lv0_monster()['sting'], 0, 3, 0)
         self.hp = hp
-    def spawn(self, list):
-        ling1 = ling(1,)
+        self.weight = weight
+        self.height = height
+    
 
 class ball(monster):
-    def __init__(self, hp):
+    def __init__(self, hp, weight, height):
         super().__init__(images.Lv0_monster()['ball'], 0, 3, 0)
         self.hp = hp
+        self.weight = weight
+        self.height = height
 
 class zombie(monster):
     def __init__(self, hp):
